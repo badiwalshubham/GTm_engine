@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // For taking the Input links!
-const readline = require('readline');
+import readline from 'readline';
 
 const Reader = readline.createInterface({
     input: process.stdin,

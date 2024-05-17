@@ -1,14 +1,21 @@
 {
   "name": "gtm_engine",
   "version": "1.0.0",
-  "description": "",
+  "description": "Go to Market Engine",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
-  "author": "",
+  "author": "Shubham_badiwal",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "dotenv": "^16.4.5",
+    "es6-promise-pool": "^2.5.0",
+    "googleapis": "^137.1.0",
+    "p-limit": "^5.0.0",
+    "piscina": "^4.4.0",
     "puppeteer": "^22.9.0"
   }
 }

@@ -1,12 +1,16 @@
 import { google } from "googleapis";
 import { SHEETS_DETAILS } from "../constants.js";
 import dotenv from "dotenv";
+// import { getInputLinks } from "../src/index.js";
 dotenv.config();
+
 
 const CONSTANTS = {
   INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
+  // INPUT_SPREADSHEET_ID: getInputLinks().link1,
   INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
 };
+
 
 export class GoogleSheets {
   static async getInstance() {

@@ -2,6 +2,7 @@ import puppeteer from "puppeteer";
 import { CHECKOUT_BRANDS_MAP } from "../constants.js";
 import { STRING_CONSTANTS } from "../constants.js";
 
+
 export class BrowserRunner {
   static async getCheckoutBrandForMultipleDomain(rows, verbose = false) {
     try {

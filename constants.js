@@ -1,3 +1,6 @@
+// import {getInputLinks} from "./src/index.js";
+// import {getOutputLinks} from "./src/index.js";
+
 const CHECKOUT_BRANDS_MAP = [
     {
       url: "gokwik",
@@ -92,6 +95,8 @@ const CHECKOUT_BRANDS_MAP = [
       ...CHECKOUT_BRANDS_MAP.map((obj) => obj.url),
       "last_updated_at",
     ],
+    // INPUT_SPREADSHEET_ID: getInputLinks().link1,
+    // OUTPUT_SPREADSHEET_ID: getOutputLinks().link2,
     INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
     OUTPUT_SPREADSHEET_ID: process.env.OUTPUT_SPREADSHEET_ID,
     INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,

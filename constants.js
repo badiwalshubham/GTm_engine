@@ -1,5 +1,6 @@
 // import {getInputLinks} from "./src/index.js";
 // import {getOutputLinks} from "./src/index.js";
+import { exportData } from './src/index.js';
 
 const CHECKOUT_BRANDS_MAP = [
     {
@@ -8,8 +9,7 @@ const CHECKOUT_BRANDS_MAP = [
     },
     {
       url: "xpresslane",
-    },
-    {
+    
       url: "zecpe",
     },
     {
@@ -88,17 +88,23 @@ const CHECKOUT_BRANDS_MAP = [
       url: "growave",
     },
   ];
-  
+
+  //  const exportData = function() {
+  //   return {link1,link2};
+  // };
+
+  const { link1: INPUT_SPREADSHEET_ID, link2: OUTPUT_SPREADSHEET_ID } = exportData();
+
   const SHEETS_DETAILS = {
     HEADER: [
       "site_url",
       ...CHECKOUT_BRANDS_MAP.map((obj) => obj.url),
       "last_updated_at",
     ],
-    // INPUT_SPREADSHEET_ID: getInputLinks().link1,
-    // OUTPUT_SPREADSHEET_ID: getOutputLinks().link2,
-    INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
-    OUTPUT_SPREADSHEET_ID: process.env.OUTPUT_SPREADSHEET_ID,
+    INPUT_SPREADSHEET_ID: INPUT_SPREADSHEET_ID,
+    OUTPUT_SPREADSHEET_ID: OUTPUT_SPREADSHEET_ID,
+    // INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
+    // OUTPUT_SPREADSHEET_ID: process.env.OUTPUT_SPREADSHEET_ID,
     INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
     OUTPUT_SHEET_NAME: process.env.OUTPUT_SHEET_NAME,
   };

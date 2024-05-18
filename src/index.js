@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 dotenv.config();
 
-// For taking the Input links!
+// For taking the Input links!`
 import readline from 'readline';
 
 const Reader = readline.createInterface({
@@ -49,13 +49,12 @@ const runInputLinks = async () => {
     main();
 };
 
-// Export Reader, getInputLinks, and getOutputLinks along with other components
-
 export { Reader, getInputLinks, getOutputLinks, exportData };
 
-
-
 // ---Inputlinks_code---- (Moved to the end after input link setup)
+
+
+
 const TASK_COMPLETED = "TASK-COMPLETED";
 
 const CONSTANTS = {

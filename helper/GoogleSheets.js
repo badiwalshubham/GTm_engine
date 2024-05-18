@@ -3,11 +3,18 @@ import { SHEETS_DETAILS } from "../constants.js";
 import dotenv from "dotenv";
 // import { getInputLinks } from "../src/index.js";
 dotenv.config();
+import { exportData } from '../src/index.js'; // replace with the path to your file
 
+
+// const exportData = function() {
+//   return {link1};
+// };
+
+const { link1: INPUT_SPREADSHEET_ID, link2: OUTPUT_SPREADSHEET_ID } = exportData();
 
 const CONSTANTS = {
-  INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
-  // INPUT_SPREADSHEET_ID: getInputLinks().link1,
+  // INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
+  INPUT_SPREADSHEET_ID: INPUT_SPREADSHEET_ID,
   INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
 };
 

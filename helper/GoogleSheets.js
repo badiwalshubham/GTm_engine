@@ -3,13 +3,16 @@ import  loadConstants   from "../constants.js";
 import dotenv from "dotenv";
 dotenv.config();
 import fs from 'fs';
-
-const GSheets = () => {
+// import fs from 'fs/promises';
 
 const { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS } = loadConstants();
 
+// const GSheets = async () => {
+ const GSheets = () => {
+  
 // Read the content of the links.json file
 const jsonData = fs.readFileSync('links.json', 'utf8');
+// const jsonData = await fs.readFile('links.json', 'utf8');
 
 // Parse the JSON content to extract link1Data and link2Data
 const { link1Data, link2Data } = JSON.parse(jsonData);

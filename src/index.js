@@ -8,10 +8,11 @@ import dotenv from "dotenv";
 import readline from 'readline';
 import { get } from "http";
 import fs from 'fs';
+// import {linkData1, linkData2} from '../links.json';
 import loadConstants from "../constants.js";
 dotenv.config();
 
-const { GoogleSheets } = GSheets();
+const { GoogleSheets } =  GSheets();
 
 const Reader = readline.createInterface({
   input: process.stdin,
@@ -62,7 +63,6 @@ const runInputLinks = async () => {
   console.log('Current Input and output links are saved');
   Reader.close();
 
-
   // ==================  Update the env using differnt methods ==================
   // const askQuestion = (query) => {
   //   return new Promise((resolve) => {
@@ -101,7 +101,7 @@ const runInputLinks = async () => {
 
   
   // Call the main function after the links are captured
-  // main(); 
+
   loadConstants();
   GSheets();
   setTimeout(() => {
@@ -165,7 +165,5 @@ const main = async () => {
 };
 
 runInputLinks();
-// loadConstants();
-//   GSheets();
 
 

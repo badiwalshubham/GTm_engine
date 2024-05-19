@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import fs from 'fs';
 
+const GSheets = () => {
+
 const { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS } = loadConstants();
 
 // Read the content of the links.json file
@@ -17,7 +19,7 @@ const CONSTANTS = {
   INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
 };
 
-export class GoogleSheets {
+class GoogleSheets {
   static async getInstance() {
     const auth = new google.auth.GoogleAuth({
       keyFile: "googleSheetsCreds.json",
@@ -97,3 +99,9 @@ export class GoogleSheets {
     }
   }
 }
+
+return { GoogleSheets, CONSTANTS };
+
+};
+
+export default GSheets;

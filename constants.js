@@ -120,5 +120,4 @@ return { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS };
 
 };
 
-
 export default loadConstants;

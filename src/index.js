@@ -1,5 +1,5 @@
 import plimit from "p-limit";
-import { GoogleSheets } from "../helper/GoogleSheets.js";
+import GSheets  from "../helper/GoogleSheets.js";
 import { BrowserRunner } from "../helper/BrowserRunner.js";
 import Piscina from "piscina";
 import path from "path";
@@ -10,6 +10,8 @@ import { get } from "http";
 import fs from 'fs';
 import loadConstants from "../constants.js";
 dotenv.config();
+
+const { GoogleSheets } = GSheets();
 
 const Reader = readline.createInterface({
   input: process.stdin,
@@ -101,7 +103,7 @@ const runInputLinks = async () => {
   // Call the main function after the links are captured
   // main(); 
   loadConstants();
-
+  GSheets();
   setTimeout(() => {
     main();
   }, 10000);
@@ -163,5 +165,7 @@ const main = async () => {
 };
 
 runInputLinks();
+// loadConstants();
+//   GSheets();
 
 

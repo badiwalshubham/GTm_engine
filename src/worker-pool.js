@@ -1,5 +1,7 @@
-import { GoogleSheets } from "../helper/GoogleSheets.js";
+import GSheets from "../helper/GoogleSheets.js";
 import { BrowserRunner } from "../helper/BrowserRunner.js";
+
+const { GoogleSheets } = GSheets();
 
 export default async (input) => {
   let { startIndex, endIndex, totalRows } = input;

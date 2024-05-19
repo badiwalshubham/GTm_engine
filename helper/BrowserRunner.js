@@ -1,17 +1,17 @@
 import puppeteer from "puppeteer";
 import loadConstants from "../constants.js";
-const { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS } = loadConstants();
+const { BRANDS_MAP, STRING_CONSTANTS } = loadConstants();
 
 export class BrowserRunner {
   static async getCheckoutBrandForMultipleDomain(rows, verbose = false) {
     try {
-      const browser = await puppeteer.launch({ headless: true });
+      const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.setRequestInterception(true);
 
       let responses = rows.map((row) => [
         row[0],
-        ...CHECKOUT_BRANDS_MAP.map((_) => STRING_CONSTANTS.NO),
+        ...BRANDS_MAP.map((_) => STRING_CONSTANTS.NO),
         new Date().toLocaleString(),
       ]);
 
@@ -46,7 +46,7 @@ export class BrowserRunner {
             }
           );
 
-          CHECKOUT_BRANDS_MAP.map((brand, i) => {
+          BRANDS_MAP.map((brand, i) => {
             if (brand.live_url && responses[index][i + 1] === STRING_CONSTANTS.YES)
               responses[index][i + 1] = STRING_CONSTANTS.YES_PAUSED;
           });
@@ -98,7 +98,7 @@ export class BrowserRunner {
       (response) => response[0] === merchantBrands[0][0]
     );
 
-    CHECKOUT_BRANDS_MAP.forEach((brand, i) => {
+    BRANDS_MAP.forEach((brand, i) => {
       if (brand.url && requestUrl.includes(brand.url)) {
         if (verbose) console.log(requestUrl);
 
@@ -117,41 +117,3 @@ export class BrowserRunner {
   }
 }
 
-// (async () => {
-//   let res = await BrowserRunner.getCheckoutBrandForMultipleDomain(
-//     [
-//       // [
-//       //   "italiancolony.com",
-//       //   ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND),
-//       // ],
-//       // ["neemans.com", ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND)],
-//       // [
-//       //   "shopping.grow91.com",
-//       //   ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND),
-//       // ],
-//       [
-//         "italiancolony.com",
-//         ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND),
-//       ],
-//       [
-//         "www.eyewearlabs.com",
-//         ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND),
-//       ],
-//       [
-//         "www.mangopeopleshop.com",
-//         ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND),
-//       ],
-//       [
-//         "zillionaireindia.com",
-//         ...CHECKOUT_BRANDS_MAP.map((_) => CONSTANTS.NOT_FOUND),
-//       ],
-//     ],
-//     true
-//   );
-//   console.log({ res });
-// })();
-
-// magic live on jisora.com
-// simpl live on fourthdimensionclub.com
-// zecpe live on miraggiolife.com, bummer.in
-// xpresslane live on www.eyewearlabs.com

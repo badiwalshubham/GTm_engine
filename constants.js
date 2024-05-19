@@ -94,16 +94,41 @@ const loadConstants = () => {
     },
   ];
 
+  const CART_BRANDS_MAP = [
+    {
+      name: "slidecart",
+      url: "slidecarthq3",
+    },
+    {
+      name: "cornercart",
+      url: "cornercart.io",
+    },
+    {
+      name: "icart",
+      url: "icart-dev",
+    },
+    {
+      name: "upcart",
+      url: "upcart",
+    },
+    {
+      name: "Monstercart",
+      url: "Monsterapps-beta",
+    },
+  ];
+
+  const BRANDS_MAP = process.argv[2] === "cart" ? CART_BRANDS_MAP : CHECKOUT_BRANDS_MAP;
+
   const SHEETS_DETAILS = {
     HEADER: [
       "site_url",
-      ...CHECKOUT_BRANDS_MAP.map((obj) => obj.url),
+      ...BRANDS_MAP.map((obj) => obj.url),
       "last_updated_at",
     ],
     INPUT_SPREADSHEET_ID: link1Data,
     OUTPUT_SPREADSHEET_ID: link2Data,
-    INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
-    OUTPUT_SHEET_NAME: process.env.OUTPUT_SHEET_NAME,
+    INPUT_SHEET_NAME: process.argv[2] === "cart" ? process.env.INPUT_SHEET_NAME2 : process.env.INPUT_SHEET_NAME,
+    OUTPUT_SHEET_NAME: process.argv[2] === "cart" ? process.env.OUTPUT_SHEET_NAME2 : process.env.OUTPUT_SHEET_NAME,
   };
 
   const STRING_CONSTANTS = {
@@ -114,7 +139,7 @@ const loadConstants = () => {
     YES_PAUSED: "yes (paused)",
   };
 
-  return { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS };
+  return { BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS };
 
 };
 

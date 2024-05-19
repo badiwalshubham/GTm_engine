@@ -38,6 +38,13 @@ const getOutputLinks = () => {
 
 
 const runInputLinks = async () => {
+  process.argv[2]; 
+  if (process.argv[2] !== 'cart' && process.argv[2] !== 'checkout') {
+    console.error("Error: Invalid argument. Use 'cart' or 'checkout'.");
+    process.exit(1);
+  }
+  console.log("You Choose the", process.argv[2] );
+
   await getInputLinks();
   await getOutputLinks();
 

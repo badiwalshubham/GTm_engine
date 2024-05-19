@@ -4,9 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import fs from 'fs';
 
-const { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS } = loadConstants();
+const { SHEETS_DETAILS } = loadConstants();
 
-// const GSheets = async () => {
 const GSheets = () => {
 
   const jsonData = fs.readFileSync('links.json', 'utf8');
@@ -15,7 +14,7 @@ const GSheets = () => {
 
   const CONSTANTS = {
     INPUT_SPREADSHEET_ID: link1Data,
-    INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
+    INPUT_SHEET_NAME: process.argv[2] === "cart" ? process.env.INPUT_SHEET_NAME2 : process.env.INPUT_SHEET_NAME,
   };
 
   class GoogleSheets {

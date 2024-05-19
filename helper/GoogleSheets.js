@@ -1,23 +1,21 @@
 import { google } from "googleapis";
-import { SHEETS_DETAILS } from "../constants.js";
+import  loadConstants   from "../constants.js";
 import dotenv from "dotenv";
-// import { getInputLinks } from "../src/index.js";
 dotenv.config();
-import { exportData } from '../src/index.js'; // replace with the path to your file
+import fs from 'fs';
 
+const { CHECKOUT_BRANDS_MAP, SHEETS_DETAILS, STRING_CONSTANTS } = loadConstants();
 
-// const exportData = function() {
-//   return {link1};
-// };
+// Read the content of the links.json file
+const jsonData = fs.readFileSync('links.json', 'utf8');
 
-const { link1: INPUT_SPREADSHEET_ID, link2: OUTPUT_SPREADSHEET_ID } = exportData();
+// Parse the JSON content to extract link1Data and link2Data
+const { link1Data, link2Data } = JSON.parse(jsonData);
 
 const CONSTANTS = {
-  // INPUT_SPREADSHEET_ID: process.env.INPUT_SPREADSHEET_ID,
-  INPUT_SPREADSHEET_ID: INPUT_SPREADSHEET_ID,
+  INPUT_SPREADSHEET_ID: link1Data,
   INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME,
 };
-
 
 export class GoogleSheets {
   static async getInstance() {

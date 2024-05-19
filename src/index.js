@@ -1,59 +1,112 @@
+import plimit from "p-limit";
 import { GoogleSheets } from "../helper/GoogleSheets.js";
 import { BrowserRunner } from "../helper/BrowserRunner.js";
 import Piscina from "piscina";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import readline from 'readline';
+import { get } from "http";
+import fs from 'fs';
+import loadConstants from "../constants.js";
 dotenv.config();
 
-// For taking the Input links!`
-import readline from 'readline';
-
 const Reader = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+  input: process.stdin,
+  output: process.stdout
 });
 
+
 let link1Data, link2Data;
+// let link1Data, link2Data, inputSheetName, outputSheetName;
 
-const getInputLinks = () => {
-    return new Promise((resolve, reject) => {
-        Reader.question("Enter the Input spreadsheet link : ", link1 => {
-            link1Data = link1;
-            resolve();
-        });
+  const getInputLinks = () => {
+  return new Promise((resolve, reject) => {
+    Reader.question("Enter the Input spreadsheet ID: ", link1 => {
+      link1Data = link1;
+      resolve();
     });
+  });
 };
 
-const getOutputLinks = () => {
-    return new Promise((resolve, reject) => {
-        Reader.question("Enter the Output spreadsheet link : ", link2 => {
-            link2Data = link2;
-            resolve();
-        });
+  const getOutputLinks = () => {
+  return new Promise((resolve, reject) => {
+    Reader.question("Enter the Output spreadsheet ID: ", link2 => {
+      link2Data = link2;
+      resolve();
     });
+  });
 };
 
-const exportData = () => {
-    return { link1: link1Data, link2: link2Data };
-};
 
 const runInputLinks = async () => {
-    await getInputLinks();
-    await getOutputLinks();
+  await getInputLinks();
+  await getOutputLinks();
+ 
+    // ================== Store the links in JSON and then use it==================
 
-    console.log("Input and output links captured successfully.");
-    Reader.close();
+  const data = {
+    link1Data,
+    link2Data
+  };
 
-    // Call the main function after capturing input links
+  // Convert the object to JSON format
+  const jsonData = JSON.stringify(data, null, 2); 
+
+  // Write JSON data to a file
+  fs.writeFileSync('links.json', jsonData);
+
+  console.log("Input and output ID captured successfully.");
+  console.log('Current Input and output links are saved');
+  Reader.close();
+
+
+  // ==================  Update the env using differnt methods ==================
+  // const askQuestion = (query) => {
+  //   return new Promise((resolve) => {
+  //     Reader.question(query, resolve);
+  //   });
+  // };
+  
+  // const runInputLinks = async () => {
+  //   link1Data = await askQuestion("Enter the Input spreadsheet link: ");
+  //   link2Data = await askQuestion("Enter the Output spreadsheet link: ");
+  //   inputSheetName = await askQuestion("Enter the Input sheet name: ");
+  //   outputSheetName = await askQuestion("Enter the Output sheet name: ");
+    
+  //   console.log("Input and output links captured successfully.");
+  //   Reader.close();
+  
+  //   process.env.INPUT_SPREADSHEET_ID = link1Data;
+  //   process.env.OUTPUT_SPREADSHEET_ID = link2Data;
+  //   process.env.INPUT_SHEET_NAME = inputSheetName;
+  //   process.env.OUTPUT_SHEET_NAME = outputSheetName;
+
+ // ==================  Update the .env file ==================
+
+//   process.env.INPUT_SPREADSHEET_ID = link1Data;
+//   process.env.OUTPUT_SPREADSHEET_ID = link2Data;
+
+//  // Convert the environment variables object to a string
+// const envData = Object.keys(process.env)
+// .map(key => `${key}=${process.env[key]}`)
+// .join('\n');
+
+// // Write the changes back to the .env file
+// fs.writeFileSync('.env', envData);
+
+// console.log('.env file updated successfully');
+
+  
+  // Call the main function after the links are captured
+  // main(); 
+  loadConstants();
+
+  setTimeout(() => {
     main();
+  }, 10000);
+
 };
-
-export { Reader, getInputLinks, getOutputLinks, exportData };
-
-// ---Inputlinks_code---- (Moved to the end after input link setup)
-
-
 
 const TASK_COMPLETED = "TASK-COMPLETED";
 
@@ -109,5 +162,6 @@ const main = async () => {
   console.log(TASK_COMPLETED);
 };
 
-// Call runInputLinks to start the process
 runInputLinks();
+
+

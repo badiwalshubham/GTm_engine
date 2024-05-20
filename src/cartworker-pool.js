@@ -1,5 +1,5 @@
-import GSheets from "../helper/GoogleSheets.js";
-import { BrowserRunner } from "../helper/BrowserRunner.js";
+import GSheets from "../helper/CartGoogleSheets.js";
+import { BrowserRunner } from "../helper/CartBrowserRunner.js";
 
 const { GoogleSheets } = GSheets();
 

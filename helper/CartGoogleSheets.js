@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import loadConstants from "../constants.js";
+import loadConstants from "../checkoutconstants.js";
 import dotenv from "dotenv";
 dotenv.config();
 import fs from 'fs';
@@ -14,7 +14,7 @@ const GSheets = () => {
 
   const CONSTANTS = {
     INPUT_SPREADSHEET_ID: link1Data,
-    INPUT_SHEET_NAME: process.argv[2] === "cart" ? process.env.INPUT_SHEET_NAME2 : process.env.INPUT_SHEET_NAME,
+    INPUT_SHEET_NAME: process.env.INPUT_SHEET_NAME_CHECKOUT,
   };
 
   class GoogleSheets {

@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
-import loadConstants from "../constants.js";
-const { BRANDS_MAP, STRING_CONSTANTS } = loadConstants();
+import loadConstants from "../checkoutconstants.js";
+const { CART_BRANDS_MAP, STRING_CONSTANTS } = loadConstants();
 
 export class BrowserRunner {
   static async getCheckoutBrandForMultipleDomain(rows, verbose = false) {
@@ -11,7 +11,7 @@ export class BrowserRunner {
 
       let responses = rows.map((row) => [
         row[0],
-        ...BRANDS_MAP.map((_) => STRING_CONSTANTS.NO),
+        ...CART_BRANDS_MAP.map((_) => STRING_CONSTANTS.NO),
         new Date().toLocaleString(),
       ]);
 
@@ -46,7 +46,7 @@ export class BrowserRunner {
             }
           );
 
-          BRANDS_MAP.map((brand, i) => {
+          CART_BRANDS_MAP.map((brand, i) => {
             if (brand.live_url && responses[index][i + 1] === STRING_CONSTANTS.YES)
               responses[index][i + 1] = STRING_CONSTANTS.YES_PAUSED;
           });
@@ -98,7 +98,7 @@ export class BrowserRunner {
       (response) => response[0] === merchantBrands[0][0]
     );
 
-    BRANDS_MAP.forEach((brand, i) => {
+    CART_BRANDS_MAP.forEach((brand, i) => {
       if (brand.url && requestUrl.includes(brand.url)) {
         if (verbose) console.log(requestUrl);
 

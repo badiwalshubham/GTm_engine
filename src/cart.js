@@ -81,7 +81,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const piscina = new Piscina({
-  filename: path.resolve(__dirname, "checkoutworker-pool.js"),
+  filename: path.resolve(__dirname, "cartworker-pool.js"),
 });
 
 const main = async () => {

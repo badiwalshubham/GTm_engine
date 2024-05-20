@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import loadConstants from "../checkoutconstants.js";
+import loadConstants from "../cartconstants.js";
 const { CART_BRANDS_MAP, STRING_CONSTANTS } = loadConstants();
 
 export class BrowserRunner {

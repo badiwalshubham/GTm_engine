@@ -30,7 +30,7 @@ const loadConstants = () => {
       url: "Monsterapps-beta",
     },
   ];
-  
+
   const SHEETS_DETAILS = {
     HEADER: [
       "site_url",
